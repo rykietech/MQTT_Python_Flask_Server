@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+   <head>
+      <title>3652426 IOT Assignment </title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="stylesheet" href='/static/style.css'/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   </head>
+   <style>
+      *{
+         margin: 0;
+         padding: 0;
+         
+         
+      }
+      body {
+         margin: 0;
+         padding: 0;
+         background-image: url('/static/backg.jpg');
+         background-repeat: no-repeat;
+         background-attachment: fixed;
+         background-size: cover;
+}
+      h1 {
+         text-align: center;
+         color: crimson;
+      }
+      h3,h4{
+         justify-content: flex-start;
+         color: white;
+      }
+
+      table, th, td {
+  border: 3px solid;
+  border-color: grey;
+  color: white;
+      
+}
+
+.center{
+   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+   </style>
+   <body>
+    <div style="background-color: black; margin:0;padding:0;">  <img class="center"src="/static/trans.png">
+    </div>
+      <div>
+  <h1>Sensor Hat Data  </h1>
+  <h3> TEMPERATURE  is {{ temperature }} oC</h3>
+  <h3> PRESSURE   is {{ pressure }} 0mbar </h3>
+  <h3> HUMIDITY   is  {{ humidity }} % </h3>
+  <h4>Protocol is {{ protocol }}</h4>
+  <hr>
+  <h3> @ {{timestamp}} ... </h3>	
+  <hr>
+  <div></div>
+  <h1>Sensor Hat Data MQTT  </h1>
+  <h3> TEMPERATURE  is {{ temperaturemqtt }} oC</h3>
+  <h3> PRESSURE   is {{ pressuremqtt }} 0mbar </h3>
+  <h3> HUMIDITY   is  {{ humiditymqtt }} % </h3>
+  <h4>Protocol is {{ protocolmqtt }}</h4>
+  <hr>
+  <h3> @ {{timestampmqtt}} ...</h3>	
+  <hr>
+</div>
+
+	<p style="color:crimson;">3652426@myuwc.ac.za</p>
+   <div><a href="/"class="button">REFRESH</a></div>
+
+   <div class="container ">
+      <div class="row">
+         <div class="col-md-4">
+            <figure class="figure"><img class="figure-img" src="/mqtt_temp.png" alt="my plot" style="height: 500px; width: 600px;padding:fit-content">
+               <figcaption class="figure-caption" style="color: white;">Showing mqtt temperature.</figcaption></figure>
+               <figure class="figure"><img class="figure-img" src="/mqtt_pres.png" alt="my plot" style="height: 500px; width: 600px;padding:fit-content">
+                  <figcaption class="figure-caption" style="color: white;">Showing mqtt pressure.</figcaption>
+               </figure>
+               <figure class="figure"><img class="figure-img" src="/mqtt_hum.png" alt="my plot" style="height: 500px; width: 600px;padding:fit-content">
+               <figcaption class="figure-caption" style="color: white;">Showing mqtt humidity.</figcaption>  
+            </figure>
+         </div>
+         <div class="col-md-4"></div>
+         <div  class="col-md-4 ">
+            <figure class="figure"><img class="figure-img" src="/socket_temp.png" alt="my plot" style="height: 500px; width: 600px; padding:fit-content">
+               <figcaption class="figure-caption" style="color: white;">Showing tcp temperature.</figcaption>
+               </figure>
+              <figure class="figure">
+               <img class="figure-img"src="/socket_pres.png" alt="my plot" style="height: 500px; width: 600px; padding:fit-content">
+               <figcaption class="figure-caption" style="color: white;">Showing tcp humidity.</figcaption>
+              </figure>
+              <figure class="figure" style="text-align: right;"><img class="figure-img" src="/socket_hum.png" alt="my plot" style="height: 500px; width: 600px;padding:fit-content">
+               <figcaption class="figure-caption" style="color: white;">Showing tcp pressure.</figcaption>
+            </figure>
+      </div>
+   </div>
+   
+   </div>
+   <div style="margin-top:120px;padding-top: 10px;">
+      <div> <table  class="table-responsive col-md-4" style="float: left;">
+         <div><th>SERVER-WEBSOCKET</th></div>
+          <tr>
+             <th>Temperature oC</th>
+             <th>Pressure</th>
+             <th>Humidity</th>
+             <th>Date</th>
+          </tr>
+          {% for item in socket_rows %}
+          <tr>
+              <td>{{item[0]}}</td>
+              <td>{{item[1]}}</td>
+              <td>{{item[2]}}</td>
+              <td>{{item[3]}}</td>
+          </tr>
+          {% endfor %}
+      </table>
+       </div>
+       
+       <div> <table class="table-responsive col-md-4" style="float: right">
+          <div><th>SERVER-MQTT</th></div>
+          <tr>
+              <th style="padding:0;">Temperature</th>
+              <th>Pressure</th>
+              <th>Humidity</th>
+              <th>Date</th>
+          </tr>
+          {% for item in mqtt_rows %}
+          <tr>
+              <td>{{item[0]}}</td>
+              <td>{{item[1]}}</td>
+              <td>{{item[2]}}</td>
+              <td>{{item[3]}}</td>
+          </tr>
+          {% endfor %}
+      </table>
+       </div>
+   </div>
+
+ 
+</body>
+</html>
