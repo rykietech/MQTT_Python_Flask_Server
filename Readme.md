@@ -1,3 +1,5 @@
+This assignment was completed in 2022
+
 the 3652426_mqtt_client.py should be stored on the raspberry pi 
 the 3652426_tcp_client.py should be stored on the raspberry pi 
 
